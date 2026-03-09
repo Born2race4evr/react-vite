@@ -1,0 +1,104 @@
+/* App Container and Title */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.app-title {
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  color: var(--pokedex-red);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  text-shadow: 0 4px 15px rgba(218, 62, 82, 0.5);
+  margin-bottom: 1rem;
+}
+
+/* Main Layout */
+.pokedex-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Left Panel for Pokemon Details */
+.left-panel {
+  flex: 0 0 350px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Right Panel for Pokemon List */
+.right-panel {
+  flex: 1;
+  background: rgba(15, 17, 26, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid var(--pokedex-red);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* Team Rocket Logo */
+.rocket-logo-left {
+  position: fixed;
+  bottom: 20px;
+  left: 25px;
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-weight: 900;
+  font-size: 8rem;
+  /* Increased size */
+  color: var(--pokedex-red);
+  /* Uses the neon red from the rest of the app */
+  /* Subtler neon glow */
+  text-shadow:
+    0 0 5px rgba(218, 62, 82, 0.8),
+    0 0 15px rgba(218, 62, 82, 0.6);
+  z-index: 100;
+  pointer-events: none;
+  transform: skewX(-12deg);
+  opacity: 0.9;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .pokedex-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-panel {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .right-panel {
+    width: 100%;
+  }
+
+  .rocket-logo-left {
+    font-size: 3rem;
+    bottom: 15px;
+    left: 15px;
+  }
+}

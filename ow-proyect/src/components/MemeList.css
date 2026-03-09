@@ -1,0 +1,10 @@
+.meme-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.meme-image {
+    width: 200px;
+}

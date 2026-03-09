@@ -1,0 +1,56 @@
+.admin-section {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 2.5rem;
+    border-radius: 24px;
+    margin-top: 2rem;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.8rem;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.admin-table tr td {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1.2rem 1rem;
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.admin-table tr td:first-child {
+    border-left: 1px solid var(--glass-border);
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.admin-table tr td:last-child {
+    border-right: 1px solid var(--glass-border);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.btn-add-car {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.btn-add-car:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}

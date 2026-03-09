@@ -1,0 +1,87 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Fondo más opaco para que destaque el spinner */
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+}
+
+.loader-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Spinner más grande y agresivo */
+.turbo-spinner {
+    width: 120px;
+    /* Aumentado */
+    height: 120px;
+    /* Aumentado */
+    position: relative;
+}
+
+.turbo-spinner::before,
+.turbo-spinner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    /* Más grueso */
+}
+
+/* El arco rojo principal */
+.turbo-spinner::before {
+    border-top-color: #ff3b3b;
+    filter: drop-shadow(0 0 15px #ff3b3b);
+    /* Efecto Neón */
+    animation: spin-external 0.8s linear infinite;
+}
+
+/* El arco gris secundario */
+.turbo-spinner::after {
+    width: 90px;
+    height: 90px;
+    top: 15px;
+    left: 15px;
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+    animation: spin-internal 1.2s linear infinite;
+}
+
+.loader-text {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    /* Más espaciado, más premium */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes spin-external {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-internal {
+    to {
+        transform: rotate(-360deg);
+    }
+}

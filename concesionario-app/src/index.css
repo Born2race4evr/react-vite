@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --accent-red: #ff3b3b;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #050505;
+  /* Fondo base negro profundo */
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* FONDO DINÁMICO: HACES DE LUZ DESDE ABAJO */
+.public-layout {
+  min-height: 100vh;
+  position: relative;
+  background-color: #050505;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Capa de profundidad */
+.public-layout::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 100%, #111 0%, #050505 100%);
+  z-index: -2;
+}
+
+/* CONTENEDOR DE LUCES (Añadir este bloque) */
+.speed-beams {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Cada haz de luz individual */
+.beam {
+  position: absolute;
+  bottom: -100px;
+  width: 2px;
+  height: 200px;
+  background: linear-gradient(to top, var(--accent-red), transparent);
+  filter: blur(1px);
+  opacity: 0;
+  animation: riseAndFade 4s infinite ease-in;
+}
+
+/* Animación de subida */
+@keyframes riseAndFade {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.6;
+  }
+
+  80% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+/* Brillo de base en el suelo */
+.ground-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30vh;
+  background: linear-gradient(to top, rgba(255, 59, 59, 0.15), transparent);
+  pointer-events: none;
+  z-index: -1;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mantener el resto de estilos base */
+button {
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 10px;
+}

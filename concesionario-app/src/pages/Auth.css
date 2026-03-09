@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+.auth-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Imagen de fondo minimalista para la pantalla de bloqueo */
+    background-image: url("./public/porsche.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    text-align: center;
+
+    /* Efecto Glassmorphism (Cristal) */
+    background: rgba(20, 20, 20, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.auth-title {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.auth-title span {
+    font-weight: 600;
+}
+
+.auth-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    font-size: 0.85rem;
+}
+
+.form-group input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.form-group input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+}
+
+.auth-button-large {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    /* Transición suave para todos los estados */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto Hover: Levitación y brillo */
+.auth-button-large:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(255, 255, 255, 0.15);
+    background-color: #f0f0f0;
+}
+
+/* Efecto Active (Clic): Hundimiento */
+.auth-button-large:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    background-color: #e0e0e0;
+}
+
+.error-message {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    padding: 0.8rem;
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.auth-link {
+    display: block;
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.auth-link:hover {
+    color: #ffffff;
+}

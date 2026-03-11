@@ -1,162 +1,126 @@
 /* =========================================
-   CONTENEDOR PRINCIPAL
+   BARRA DE NAVEGACIÓN (BASE Y ESCRITORIO)
 ========================================= */
 .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 2px solid #ff3b3b;
     position: sticky;
     top: 0;
-    z-index: 100;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(10, 10, 10, 0.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    min-height: 70px;
 }
 
-/* =========================================
-   SECCIÓN IZQUIERDA: BRANDING
-========================================= */
-.navbar-brand-section {
-    padding-left: 5%;
-    flex: 1;
+.navbar-mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
 }
 
 .navbar-brand {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 900;
-    letter-spacing: -1px;
-    text-transform: uppercase;
     color: #fff;
     margin: 0;
+    letter-spacing: 2px;
 }
 
 .navbar-brand span {
     color: #ff3b3b;
 }
 
-/* =========================================
-   SECCIÓN CENTRO: NAVEGACIÓN
-========================================= */
+/* Contenedor principal de PC (Enlaces + Usuario) */
+.navbar-content {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 40px;
+}
+
+/* ENLACES */
 .navbar-links-section {
     display: flex;
-    gap: 3rem;
-    justify-content: center;
-    flex: 1;
+    gap: 20px;
 }
 
 .nav-link {
+    color: #fff;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.5);
     font-size: 0.8rem;
     font-weight: 800;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
-    position: relative;
-    transition: color 0.3s ease;
-    padding: 5px 0;
+    transition: color 0.3s;
 }
 
 .nav-link:hover {
-    color: #fff;
+    color: #ff3b3b;
+    text-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
 }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #ff3b3b;
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-    width: 100%;
-}
-
-/* =========================================
-   SECCIÓN DERECHA: USUARIO Y TELEMETRÍA
-========================================= */
+/* SECCIÓN USUARIO Y TELEMETRÍA */
 .navbar-user-section {
     display: flex;
     align-items: center;
-    height: 100%;
-    flex: 1;
-    justify-content: flex-end;
+    gap: 20px;
 }
 
-/* Reloj de Telemetría */
 .live-clock {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-right: 25px;
-    padding-right: 25px;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    font-family: 'Inter', sans-serif;
-}
-
-.clock-icon {
-    font-size: 0.9rem;
-    opacity: 0.7;
+    background: rgba(255, 59, 59, 0.1);
+    border: 1px solid rgba(255, 59, 59, 0.3);
+    padding: 5px 12px;
+    border-radius: 4px;
 }
 
 .clock-time {
-    font-size: 0.85rem;
-    font-weight: 800;
+    color: #ff3b3b;
+    font-weight: 900;
+    font-family: monospace;
+    font-size: 0.9rem;
     letter-spacing: 2px;
-    color: #fff;
-    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 5px rgba(255, 59, 59, 0.5);
 }
 
-/* Contenedor del Perfil (Enlace) */
+/* PERFIL Y AVATAR */
 .profile-link-wrapper {
-    text-decoration: none !important;
-    color: inherit;
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-right: 25px;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
+    text-decoration: none;
+    transition: transform 0.2s;
 }
 
 .profile-link-wrapper:hover {
-    opacity: 0.8;
+    transform: scale(1.02);
 }
 
 .welcome-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.user-identity {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    text-align: right;
 }
 
 .welcome-text {
-    opacity: 0.5;
+    font-size: 0.6rem;
     color: rgba(255, 255, 255, 0.4);
+    font-weight: 900;
 }
 
 .username-highlight {
+    font-size: 0.9rem;
     font-weight: 900;
     color: #fff;
+    letter-spacing: 1px;
 }
 
-/* Rangos y Colores Dinámicos */
 .user-rank {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 900;
-    letter-spacing: 2px;
-    margin-top: 3px;
-    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .role-text-admin {
@@ -175,20 +139,16 @@
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* =========================================
-   MINI-AVATAR (ESTILO BISELADO)
-========================================= */
 .nav-avatar-mini {
-    width: 38px;
-    height: 38px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     overflow: hidden;
-    /* Corte diagonal Sci-Fi para el mini-avatar */
-    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #000;
 }
 
 .nav-avatar-img {
@@ -198,33 +158,126 @@
 }
 
 .nav-avatar-placeholder {
-    font-size: 0.9rem;
-    font-weight: 900;
-    color: #ff3b3b;
-}
-
-/* =========================================
-   BOTÓN DE SALIDA (POLIGONAL)
-========================================= */
-.btn-logout-polygon {
-    background: #ff3b3b;
     color: #fff;
     font-weight: 900;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    height: 100%;
-    width: 150px;
-    border: none;
+}
+
+/* BOTÓN SALIR */
+.btn-logout-polygon {
+    background: transparent;
+    border: 1px solid #ff3b3b;
+    color: #ff3b3b;
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    font-weight: 900;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    /* Inclinación agresiva hacia la derecha */
-    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
-    padding-left: 25px;
+    transition: all 0.3s;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }
 
 .btn-logout-polygon:hover {
-    background: #fff;
+    background: #ff3b3b;
     color: #000;
-    padding-left: 15px;
+}
+
+/* =========================================
+   BOTÓN HAMBURGUESA (OCULTO EN PC)
+========================================= */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #ff3b3b;
+    transition: all 0.3s ease-in-out;
+}
+
+/* =========================================
+   ADAPTACIÓN PARA MÓVILES (RESPONSIVE)
+========================================= */
+@media screen and (max-width: 900px) {
+    .navbar-container {
+        flex-direction: column;
+        padding: 15px 20px;
+        align-items: stretch;
+    }
+
+    .navbar-mobile-header {
+        width: 100%;
+    }
+
+    .hamburger {
+        display: flex;
+        /* Mostramos la hamburguesa en móvil */
+    }
+
+    /* Animación X del menú abierto */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Contenedor principal pasa a ser un menú lateral desplegable */
+    .navbar-content {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        /* Oculto por defecto */
+        width: 280px;
+        height: 100vh;
+        background: rgba(5, 5, 5, 0.98);
+        border-left: 2px solid #ff3b3b;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        /* Alineamos a la derecha */
+        margin: 0;
+        padding: 80px 20px 20px 20px;
+        /* Espacio para no pisar el logo/hamburguesa */
+        gap: 40px;
+        transition: right 0.4s ease-in-out;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Clase activa que introduce el panel */
+    .navbar-content.active {
+        right: 0;
+    }
+
+    .navbar-links-section {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 25px;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 30px;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+    }
+
+    .navbar-user-section {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 30px;
+        width: 100%;
+    }
+
+    .welcome-container {
+        text-align: right;
+    }
 }

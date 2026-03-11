@@ -463,3 +463,51 @@
 .add-car-card:hover::before {
     border: 2px solid #ff3b3b;
 }
+
+/* =========================================
+   ADAPTACIÓN PARA MÓVILES (RESPONSIVE)
+========================================= */
+@media screen and (max-width: 768px) {
+    .admin-section {
+        padding: 10px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .admin-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .fleet-controls {
+        justify-content: center;
+    }
+
+    .btn-deploy-car {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Forzamos 1 sola columna en móviles */
+    .garage-grid,
+    .users-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .user-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .car-card-actions {
+        flex-direction: column;
+    }
+
+    .btn-card-edit,
+    .btn-card-delete {
+        width: 100%;
+    }
+}

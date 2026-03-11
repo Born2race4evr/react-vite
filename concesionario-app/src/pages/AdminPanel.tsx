@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { fetchCars, deleteCar, type Car } from '../api/carsApi';
+import { fetchCars, deleteCar} from '../api/carsApi';
 import './AdminPanel.css';
 
 export const AdminPanel = () => {

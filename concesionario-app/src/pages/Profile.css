@@ -408,3 +408,29 @@
     opacity: 0.4;
     grid-column: 1 / -1;
 }
+
+/* =========================================
+   ADAPTACIÓN PARA MÓVILES (RESPONSIVE)
+========================================= */
+@media screen and (max-width: 768px) {
+    .profile-layout-grid {
+        grid-template-columns: 1fr;
+        /* Apila el panel izquierdo y derecho */
+        gap: 20px;
+    }
+
+    .hud-main-title {
+        font-size: 1.8rem;
+    }
+
+    .profile-hud-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .profile-form-grid {
+        grid-template-columns: 1fr;
+        /* Apila los inputs del nuevo canal */
+    }
+}

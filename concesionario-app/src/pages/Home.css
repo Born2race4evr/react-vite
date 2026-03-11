@@ -163,3 +163,24 @@
     border-radius: 50%;
     box-shadow: 0 0 6px #ff3b3b;
 }
+
+/* =========================================
+   ADAPTACIÓN PARA MÓVILES (RESPONSIVE)
+========================================= */
+@media screen and (max-width: 768px) {
+    .home-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .car-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    .home-car-author {
+        flex-wrap: wrap;
+        /* Por si el nombre es muy largo */
+    }
+}

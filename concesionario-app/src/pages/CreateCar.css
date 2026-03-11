@@ -231,3 +231,43 @@
         padding: 30px 20px;
     }
 }
+
+/* =========================================
+   ADAPTACIÓN PARA MÓVILES (RESPONSIVE)
+========================================= */
+@media screen and (max-width: 768px) {
+    .workshop-container {
+        width: 95%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .workshop-title {
+        font-size: 1.5rem;
+    }
+
+    /* Rompemos las filas para apilar los inputs */
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .image-upload-section {
+        padding: 20px 10px;
+    }
+
+    .image-preview-box {
+        height: 150px;
+        /* Reducimos la altura de la caja de foto */
+    }
+
+    .workshop-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-cancel,
+    .btn-save {
+        width: 100%;
+    }
+}

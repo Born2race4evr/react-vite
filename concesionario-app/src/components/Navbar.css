@@ -1,3 +1,6 @@
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
 .navbar-container {
     position: sticky;
     top: 0;
@@ -13,7 +16,9 @@
     padding: 0;
 }
 
-/* Sección Izquierda */
+/* =========================================
+   SECCIÓN IZQUIERDA: BRANDING
+========================================= */
 .navbar-brand-section {
     padding-left: 5%;
     flex: 1;
@@ -32,7 +37,9 @@
     color: #ff3b3b;
 }
 
-/* Sección Centro: Enlaces con el EFECTO DE LÍNEA ROJA */
+/* =========================================
+   SECCIÓN CENTRO: NAVEGACIÓN
+========================================= */
 .navbar-links-section {
     display: flex;
     gap: 3rem;
@@ -48,7 +55,6 @@
     text-transform: uppercase;
     letter-spacing: 2.5px;
     position: relative;
-    /* Necesario para la línea */
     transition: color 0.3s ease;
     padding: 5px 0;
 }
@@ -57,13 +63,11 @@
     color: #fff;
 }
 
-/* El efecto de la línea roja de antes */
 .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    /* Grosor de la línea */
     bottom: 0;
     left: 0;
     background-color: #ff3b3b;
@@ -72,37 +76,136 @@
 
 .nav-link:hover::after {
     width: 100%;
-    /* Se expande al 100% en hover */
 }
 
-/* Sección Derecha */
+/* =========================================
+   SECCIÓN DERECHA: USUARIO Y TELEMETRÍA
+========================================= */
 .navbar-user-section {
     display: flex;
     align-items: center;
-    gap: 2rem;
     height: 100%;
     flex: 1;
     justify-content: flex-end;
 }
 
+/* Reloj de Telemetría */
+.live-clock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 25px;
+    padding-right: 25px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Inter', sans-serif;
+}
+
+.clock-icon {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.clock-time {
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Contenedor del Perfil (Enlace) */
+.profile-link-wrapper {
+    text-decoration: none !important;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 25px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.profile-link-wrapper:hover {
+    opacity: 0.8;
+}
+
 .welcome-container {
-    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.user-identity {
+    font-size: 0.8rem;
     letter-spacing: 1px;
-    text-transform: uppercase;
 }
 
 .welcome-text {
-    font-weight: 300;
+    opacity: 0.5;
     color: rgba(255, 255, 255, 0.4);
 }
 
 .username-highlight {
     font-weight: 900;
     color: #fff;
-    margin-left: 5px;
 }
 
-/* Botón Poligonal (Estilo Final) */
+/* Rangos y Colores Dinámicos */
+.user-rank {
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-top: 3px;
+    text-transform: uppercase;
+}
+
+.role-text-admin {
+    color: #ff3b3b;
+}
+
+.role-text-engineer {
+    color: #ffcc00;
+}
+
+.role-text-pilot {
+    color: #00bfff;
+}
+
+.role-text-rookie {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* =========================================
+   MINI-AVATAR (ESTILO BISELADO)
+========================================= */
+.nav-avatar-mini {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    /* Corte diagonal Sci-Fi para el mini-avatar */
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nav-avatar-placeholder {
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: #ff3b3b;
+}
+
+/* =========================================
+   BOTÓN DE SALIDA (POLIGONAL)
+========================================= */
 .btn-logout-polygon {
     background: #ff3b3b;
     color: #fff;
@@ -115,6 +218,7 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Inclinación agresiva hacia la derecha */
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
     padding-left: 25px;
 }

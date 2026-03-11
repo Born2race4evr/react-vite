@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchCars } from '../api/carsApi';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 export const Home = () => {
@@ -19,15 +20,23 @@ export const Home = () => {
 
             <div className="car-grid">
                 {cars?.map((car) => (
-                    <div key={car.id} className="car-card">
-                        <div className="car-image-container">
-                            <img src={car.image} alt={`${car.brand} ${car.model}`} className="car-image" />
+                    <Link to={`/car/${car.id}`} key={car.id} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <div className="car-card">
+                            <div className="car-image-container">
+                                <img src={car.image} className="car-image" alt={car.model} />
+                            </div>
+                            <div className="car-info">
+                                <span className="car-brand">{car.brand}</span>
+                                <h3 className="car-model">{car.model}</h3>
+
+                                {/* NUEVO: ETIQUETA DE AUTOR DE LA PUBLICACIÓN */}
+                                <div className="home-car-author">
+                                    <span className="home-author-label">SUBIDO POR:</span>
+                                    <span className="home-author-name">{car.createdBy || 'OFICIAL'}</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="car-info">
-                            <h3 className="car-brand">{car.brand}</h3>
-                            <h2 className="car-model">{car.model}</h2>
-                        </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>

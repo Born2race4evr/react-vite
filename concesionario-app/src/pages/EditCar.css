@@ -1,0 +1,228 @@
+/* =========================================
+   CONTENEDOR PRINCIPAL (SIN FONDO)
+========================================= */
+.edit-overlay {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background: transparent;
+    /* Fondo eliminado para ver la app de fondo */
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    z-index: 10;
+}
+
+/* =========================================
+   TARJETA DE CRISTAL TRANSLÚCIDA (GLASSMORPHISM)
+========================================= */
+.edit-container {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(20, 25, 30, 0.15);
+    /* Opacidad muy baja para máxima transparencia */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 50px 60px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   CABECERA
+========================================= */
+.edit-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.edit-title {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.edit-title span {
+    font-weight: 800;
+    color: #ff3b3b;
+}
+
+.edit-subtitle {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+/* =========================================
+   FORMULARIO Y GRID
+========================================= */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* =========================================
+   INPUTS ESTILO "TELEMETRÍA" TRANSLÚCIDOS
+========================================= */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    /* Fondo blanco casi transparente */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 14px 16px;
+    color: #fff;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================
+   ZONA DE CARGA DE FOTO TRANSLÚCIDA
+========================================= */
+.image-upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.image-upload-section label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+}
+
+.image-preview-box {
+    width: 100%;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.03);
+    /* Fondo blanco casi transparente */
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.image-upload-section:hover .image-preview-box {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.image-preview-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.img-placeholder {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.1);
+    font-weight: 200;
+}
+
+/* =========================================
+   BOTONES INFERIORES
+========================================= */
+.edit-actions {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-cancel {
+    background: rgba(255, 59, 59, 0.05);
+    border: 1px solid rgba(255, 59, 59, 0.3);
+    color: #ff3b3b;
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-cancel:hover:not(:disabled) {
+    background: rgba(255, 59, 59, 0.15);
+    border-color: #ff3b3b;
+}
+
+.btn-save {
+    background: #fff;
+    color: #000;
+    border: none;
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-save:hover:not(:disabled) {
+    background: #e6e6e6;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   RESPONSIVE (MÓVILES)
+========================================= */
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .edit-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-container {
+        padding: 30px 20px;
+    }
+}

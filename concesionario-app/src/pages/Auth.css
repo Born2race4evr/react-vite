@@ -136,3 +136,22 @@
 .auth-link:hover {
     color: #ffffff;
 }
+
+/* Animación para el botón de Cancelar en el Taller */
+.btn-cancel-animated {
+    background: transparent;
+    border: 1px solid #ff3b3b;
+    color: #ff3b3b;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 1px;
+}
+
+.btn-cancel-animated:hover:not(:disabled) {
+    background: #ff3b3b;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 59, 59, 0.4);
+    transform: translateY(-2px);
+}

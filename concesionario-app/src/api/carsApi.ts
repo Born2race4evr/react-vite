@@ -3,42 +3,89 @@ export interface Car {
     brand: string;
     model: string;
     image: string;
+    hp?: string;
+    acceleration?: string;
+    topSpeed?: string;
+    drive?: string;
+    createdBy?: string;
 }
 
-// Simulamos una base de datos en memoria
-let mockCars: Car[] = [
-    { id: 1, brand: 'Toyota', model: 'Supra', image: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2069&auto=format&fit=crop' },
-    { id: 2, brand: 'Nissan', model: 'GT-R', image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=2070&auto=format&fit=crop' }
-];
+const STORAGE_KEY = 'motorsport-flota';
 
-export const fetchCars = async (): Promise<Car[]> => {
-    return new Promise((resolve) => setTimeout(() => resolve([...mockCars]), 500));
+const getCarsFromStorage = (): Car[] => {
+    const storedData = localStorage.getItem(STORAGE_KEY);
+
+    if (storedData) {
+        return JSON.parse(storedData);
+    }
+
+    const defaultCars: Car[] = [
+        {
+            id: 1,
+            brand: "Toyota",
+            model: "Supra",
+            image: "/supra.jpg",
+            hp: "340 CV",
+            acceleration: "4.3s",
+            topSpeed: "250 KM/H",
+            drive: "RWD",
+            createdBy: "OFICIAL"
+        }
+    ];
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultCars));
+    return defaultCars;
 };
 
-export const createCar = async (newCar: Omit<Car, 'id'>): Promise<Car> => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const car = { ...newCar, id: Date.now() };
-            mockCars.push(car);
-            resolve(car);
-        }, 500);
-    });
+const saveCarsToStorage = (cars: Car[]) => {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cars));
+    } catch (error) {
+        // Fallo silencioso de guardado
+    }
+};
+
+export const fetchCars = async (): Promise<Car[]> => {
+    return getCarsFromStorage();
+};
+
+export const createCar = async (car: Omit<Car, 'id'>): Promise<Car> => {
+    const cars = getCarsFromStorage();
+
+    const nextId = cars.length > 0 ? Math.max(...cars.map(c => c.id)) + 1 : 1;
+    const newCar = { ...car, id: nextId };
+
+    cars.push(newCar);
+    saveCarsToStorage(cars);
+
+    return newCar;
 };
 
 export const updateCar = async (updatedCar: Car): Promise<Car> => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            mockCars = mockCars.map((car) => (car.id === updatedCar.id ? updatedCar : car));
-            resolve(updatedCar);
-        }, 500);
-    });
+    let cars = getCarsFromStorage();
+
+    const index = cars.findIndex(c => c.id === updatedCar.id);
+    if (index === -1) {
+        throw new Error("Car not found");
+    }
+
+    // BLINDAJE DE DATOS: Recuperamos el coche original antes de sobreescribirlo
+    const originalCar = cars[index];
+
+    // Fusionamos los datos. Si updatedCar no trae autor, mantenemos el que ya tenía.
+    cars[index] = {
+        ...updatedCar,
+        createdBy: updatedCar.createdBy || originalCar.createdBy
+    };
+
+    saveCarsToStorage(cars);
+
+    return cars[index];
 };
 
 export const deleteCar = async (id: number): Promise<number> => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            mockCars = mockCars.filter((car) => car.id !== id);
-            resolve(id);
-        }, 500);
-    });
+    let cars = getCarsFromStorage();
+    cars = cars.filter((c) => c.id !== id);
+    saveCarsToStorage(cars);
+    return id;
 };

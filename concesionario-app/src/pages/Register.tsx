@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuthStore } from '../store/useAuthStore';
+import { useAuthStore, type Role } from '../store/useAuthStore';
 import './Auth.css';
 
 export const Register = () => {
@@ -9,81 +9,96 @@ export const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const { login, registerUser, registeredUsers } = useAuthStore();
+    const { registerUser, registeredUsers, login } = useAuthStore();
     const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
 
-        if (registeredUsers.some((u) => u.username === username)) {
-            setError('Ese nombre de piloto ya está registrado.');
-            return;
-        }
-
+        // Validación silenciosa de contraseñas
         if (password !== confirmPassword) {
-            setError('Las contraseñas no coinciden.');
+            setError('FALLO DE SINCRONIZACIÓN: Las contraseñas no coinciden.');
             return;
         }
 
-        const newUser = { username, password, role: 'user' as const };
+        // Verificación de piloto duplicado
+        const userExists = registeredUsers.some(
+            u => u.username.toLowerCase() === username.toLowerCase()
+        );
+
+        if (userExists) {
+            setError('IDENTIFICACIÓN RECHAZADA: Ese nombre de piloto ya está en uso.');
+            return;
+        }
+
+        // Expedimos la licencia con el rango de Novato ('rookie')
+        const newUser = {
+            username,
+            password,
+            role: 'rookie' as Role
+        };
+
         registerUser(newUser);
-        login(newUser); // Registro y login automático e inmediato
+        login(newUser); // Conectamos al usuario a los boxes inmediatamente
+
+        // Redirección directa al inventario
         navigate('/');
     };
 
     return (
         <div className="auth-page-wrapper">
             <div className="auth-container">
-                <h1 className="auth-title">Crear <span>Cuenta</span></h1>
-                <p className="auth-subtitle">Únete a la escudería MotorSport</p>
+                <h1 className="auth-title">Motor<span>Sport</span></h1>
+                <p className="auth-subtitle">Solicitud de Licencia de Piloto</p>
 
                 <form onSubmit={handleSubmit} className="auth-form">
+                    {/* El mensaje de error se muestra integrado en el cristal, sin ventanas emergentes */}
                     {error && <div className="error-message">{error}</div>}
 
                     <div className="form-group">
-                        <label htmlFor="username">Usuario</label>
+                        <label htmlFor="username">Identificación (Usuario)</label>
                         <input
                             type="text"
                             id="username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
-                            placeholder="Elige tu nombre"
+                            placeholder="Nombre de piloto"
                         />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="password">Contraseña</label>
+                        <label htmlFor="password">Código de Acceso (Contraseña)</label>
                         <input
                             type="password"
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            placeholder="Mínimo 6 caracteres"
+                            placeholder="••••••••"
                         />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+                        <label htmlFor="confirmPassword">Confirmar Código</label>
                         <input
                             type="password"
                             id="confirmPassword"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
-                            placeholder="Repite tu contraseña"
+                            placeholder="••••••••"
                         />
                     </div>
 
                     <button type="submit" className="auth-button-large">
-                        Registrarse
+                        OBTENER LICENCIA
                     </button>
                 </form>
 
                 <Link to="/login" className="auth-link">
-                    ¿Ya tienes cuenta? Inicia sesión
+                    ¿Ya eres miembro de la escudería? Entra en boxes
                 </Link>
             </div>
         </div>

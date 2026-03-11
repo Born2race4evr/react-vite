@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.12);
   --accent-red: #ff3b3b;
 }
 
@@ -10,54 +8,63 @@ body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background-color: #050505;
-  /* Fondo base negro profundo */
   color: #ffffff;
   overflow-x: hidden;
 }
 
-/* FONDO DINÁMICO: HACES DE LUZ DESDE ABAJO */
+/* CONTENEDOR PRINCIPAL CON GRID */
 .public-layout {
   min-height: 100vh;
   position: relative;
-  background-color: #050505;
-  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
   z-index: 0;
 }
 
-/* Capa de profundidad */
-.public-layout::before {
-  content: "";
-  position: absolute;
+/* ORBES DE LUZ AMBIENTAL */
+.ambient-glow {
+  position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 50% 100%, #111 0%, #050505 100%);
-  z-index: -2;
+  pointer-events: none;
+  z-index: -1;
 }
 
-/* CONTENEDOR DE LUCES (Añadir este bloque) */
-.speed-beams {
+.ambient-glow::before {
+  content: "";
   position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(255, 59, 59, 0.08) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: floatLight 15s infinite alternate;
+}
+
+/* HACES DE LUZ QUE SALEN DE ABAJO */
+.speed-beams {
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
   z-index: -1;
-  overflow: hidden;
 }
 
-/* Cada haz de luz individual */
 .beam {
   position: absolute;
-  bottom: -100px;
+  bottom: -200px;
   width: 2px;
-  height: 200px;
+  height: 300px;
   background: linear-gradient(to top, var(--accent-red), transparent);
   filter: blur(1px);
   opacity: 0;
   animation: riseAndFade 4s infinite ease-in;
 }
 
-/* Animación de subida */
 @keyframes riseAndFade {
   0% {
     transform: translateY(0);
@@ -65,7 +72,7 @@ body {
   }
 
   20% {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
   80% {
@@ -73,50 +80,28 @@ body {
   }
 
   100% {
-    transform: translateY(-100vh);
+    transform: translateY(-110vh);
     opacity: 0;
   }
 }
 
-/* Brillo de base en el suelo */
-.ground-glow {
+@keyframes floatLight {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(10%, 10%);
+  }
+}
+
+/* Resplandor en el suelo */
+.ground-light {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 30vh;
+  height: 25vh;
   background: linear-gradient(to top, rgba(255, 59, 59, 0.15), transparent);
-  pointer-events: none;
   z-index: -1;
-  animation: pulseGlow 4s ease-in-out infinite alternate;
-}
-
-@keyframes pulseGlow {
-  from {
-    opacity: 0.3;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-/* Mantener el resto de estilos base */
-button {
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.3s ease;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--glass-border);
-  border-radius: 10px;
 }
